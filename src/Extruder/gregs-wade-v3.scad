@@ -6,7 +6,7 @@
 // modified for i3 by vlnofka <vlnofka@gmail.com>
 // upravy pro RebeliXe maji komentar "Uprava.." <neruda@reprap4u.cz>
 
-include<../configuration.scad>
+include<../../configuration.scad>
 include<../inc/functions.scad>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
