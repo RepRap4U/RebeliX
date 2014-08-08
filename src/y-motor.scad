@@ -25,18 +25,20 @@ module y_motor_cuts(){
 	translate([base_thickness,5,29.5+7]) rotate([0,0,-90]) cube([10,70,40]);	
 	
 	translate([base_thickness+21.3-8,21.3+4-8,-0.1]) cube([40,40,10]);
-	translate([base_thickness+21.3+5,21.3+4-10,-0.1]) cube([15,15,10]);		
+	translate([base_thickness+21.3,21.3+4-11.8,-0.1]) cube([25,15,10]);		
 	
 	translate([base_thickness+42.3,13,-0.1]) rotate([0,0,45]) cube([10,10,10,]);
 	translate([base_thickness+9,42.3+4,-0.1]) rotate([0,0,-45]) cube([10,10,10,]);	
 	
 	// Otvor na kabely motoru
-	translate([-0.1,4+21.3-5,motor_length+motor_base_thickness-9.5]) cube([10,20,10]);
+	translate([-4,-0.1,motor_length+motor_base_thickness-9.5]) cube([40,60,10]);
 	translate([-0.1,4+21.3+5,motor_length+motor_base_thickness-9.5]) rotate([-45,0,0]) cube([10,40,40]);	
 	
 	translate([0,42.3,-0.1]) rotate([0,0,45]) cube([10,10,motor_length+motor_base_thickness]);
-	// Vyrez pro vedeni kabelu od motoru Z
-	translate([0,30+3.5,-0.1]) cylinder(r=3.5,h=motor_length+motor_base_thickness,$fn=20);
+
+	// Vyrez pro vedeni kabelu od motoru Z (dolni vedeni)
+	translate([0,5,-0.1]) cylinder(r=3.5,h=motor_length+motor_base_thickness+1,$fn=20);
+	translate([3.5,5,-0.1]) rotate([0,0,180]) cube([10,10,motor_length+motor_base_thickness+1]);
 }	
 
 module y_motor_holes(){
@@ -49,9 +51,17 @@ module y_motor_holes(){
 		translate([0,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
 		translate([31,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
 		translate([0,31,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
+		// Korekce pozice motoru - napinani remenu
+		translate([0+2,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
+		translate([31+2,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
+		translate([0+2,31,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
+		
+		translate([0,0-1.9,-0.1]) cube([1.9,2*1.9,10]);
+		translate([31,0-1.9,-0.1]) cube([1.9,2*1.9,10]);
+		translate([0,31-1.9,-0.1]) cube([1.9,2*1.9,10]);		
 	}	
 	// Vyrez pro stred motoru
-	translate([base_thickness+21.3,4+21.3,-0.1]) cylinder(r = 11.8,h = 10,$fn = 30);
+	translate([base_thickness+21.3,4+21.3,-0.1]) cylinder(r = 11.8,h = 10,$fn = 64);
 }
 
 difference(){
