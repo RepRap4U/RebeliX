@@ -22,7 +22,7 @@ module y_cuts(){
   translate([width+0.1,0.5,0]) rotate([0,0,180]) cube([50,2,(height/2)-4]);
   
   // Vyrez pro 8mm tyc
-  translate([width/2,thickness - 1.6,-0.1]) cylinder(h=(height/2)+4.8,r=(rod_diameter/2)+0.1,$fn = 32);
+  translate([width/2,thickness - 1.6,-0.1]) cylinder(h=(height/2)+5,r=(rod_diameter/2)+0.1,$fn = 32);
   // Zkosene hrany
   translate([width/2-8,thickness-2,-0.1]) rotate([0,0,45]) cube([10,10,20]);
   translate([width/2+8,thickness-2,-0.1]) rotate([0,0,45]) cube([10,10,20]);

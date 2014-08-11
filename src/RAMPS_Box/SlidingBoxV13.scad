@@ -64,11 +64,10 @@ difference(){
 		translate([-OutL/2+2,-OutW+2,0]) cube([14,5,OutD-10]);		
 	}
 	union(){
-		translate([-OutL/2-0.1,-13,OutD/2-20]) cube([10,10,20]);
-		translate([-OutL/2-0.1,-13,OutD/2-10]) rotate([0,90,0])cylinder(h=10,r=10);
+		translate([-OutL/2-0.1,-13,OutD/2-22]) cube([10,10,20]);
+		translate([-OutL/2-0.1,-13,OutD/2-12]) rotate([0,90,0])cylinder(h=10,r=10);
 	}
 }
-
 
 difference(){
 	union(){
@@ -82,14 +81,20 @@ difference(){
 	  // Holes for Arduino Mega2560
 	  translate([-OutW/2+6,OutD+6,0]) rotate([90,0,0]){
 	  // Holes for zip ties
-	  translate([-10,110,35]) rotate([0,90,0])
-	  cylinder(h=10,r=1.6);
-	  translate([-10,110,45]) rotate([0,90,0])
-	  cylinder(h=10,r=1.6);
-	  translate([-10,40,35]) rotate([0,90,0])
-	  cylinder(h=10,r=1.6);
-	  translate([-10,40,45]) rotate([0,90,0])
-	  cylinder(h=10,r=1.6);
+	  translate([-10,110,43]) rotate([0,90,0])
+	  cylinder(h=10,r=1.8,$fn=16);
+	  translate([-10,110,52]) rotate([0,90,0])
+	  cylinder(h=10,r=1.8,$fn=16);
+	  
+	  translate([-10,70,43]) rotate([0,90,0])
+	  cylinder(h=10,r=1.8,$fn=16);
+	  translate([-10,70,52]) rotate([0,90,0])
+	  cylinder(h=10,r=1.8,$fn=16);
+	  
+	  translate([-10,30,43]) rotate([0,90,0])
+	  cylinder(h=10,r=1.8,$fn=16);
+	  translate([-10,30,52]) rotate([0,90,0])
+	  cylinder(h=10,r=1.8,$fn=16);
 	}
 	// Mounting holes
 	translate([0,OutD,15]) rotate([-90,0,0]) cylinder(r = 3.05, h = 20, $fn = 30);
@@ -98,6 +103,7 @@ difference(){
 	translate([0,OutD+1,OutD/2-8]) rotate([90,0,0]) cube([50,60,7]);
 	}
 }
+
 
 // ***************  Your modules to add apertures to  ***************************
 
