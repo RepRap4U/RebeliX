@@ -19,7 +19,7 @@ module belt_holder_beltcut(){
  echo(belt_tooth_ratio*belt_tooth_distance);
  position_tweak=-1.1;
  // Belt slit
- translate([-66,-0.5+10,3]) cube([67,0.55,15]);
+ translate([-66,-0.5+10,3]) cube([67,0.6,15]);
  // Smooth insert cutout
  translate([-66,-0.5+10,12]) rotate([45,0,0]) cube([67,15,15]);
  // Individual teeth
