@@ -6,16 +6,44 @@
 // http://www.reprap4u.cz
 // Inspired by Rebel II
 
+include <../configuration.scad>
+
 // Postacuji i 4 mm
 base_thickness = 5;
 
-difference(){
-	union(){
-		cube([60,30,base_thickness], center = false);
-		translate([11,0,0])cube([8,30,base_thickness+1.5]);
-		translate([60,30/2-4,0])rotate(90,0,0)cube([8,30,base_thickness+1.5]);
+module corner_coupler(diameter=M6_diameter/2,width=30,length=60,height=base_thickness,embed=1.5,cut_width=ALU_cut_width){
+	difference(){
+		union(){
+			//Zakladni blok
+			cube([length,width,height],center=true);
+
+			//Zapusteni do profilu
+			translate([-length/4,0,height/2])cube([cut_width,width,embed*2],center=true);
+			translate([width/2,0,height/2])rotate(90,0,0)cube([cut_width,width,embed*2],center=true);
 		}
-		
-		translate([11+4,30/2,-0.1])cylinder(h=10,r=3.1,$fn=32);
-		translate([60-30/2,30/2,-0.1])cylinder(h=10,r=3.1,$fn=32);
+		//Diry na srouby
+		translate([-length/4,0,embed/2])cylinder(h=height+embed+0.1,r=diameter,$fs=0.5,center=true);
+		translate([width/2,0,embed/2])cylinder(h=height+embed+0.1,r=diameter,$fs=0.5,center=true);
+
+		//Seriznuti rohu
+		translate([0,-width/2-2.5, -height/2-0.1]) 
+		rotate([45,0,0]) 
+		cube([length+0.1,5, 5],center=true);
+
+		translate([0,width/2+2.5, -height/2-0.1]) 
+		rotate([45,0,0]) 
+		cube([length+0.1,5, 5],center=true);
+
+		translate([length/2+2.5,0, -height/2-0.1]) 
+		rotate([0,45,0]) 
+		cube([5,width+0.1, 5],center=true);
+
+		translate([-length/2-2.5,0, -height/2-0.1]) 
+		rotate([0,45,0]) 
+		cube([5,width+0.1, 5],center=true);
+
+	}
 }
+
+corner_coupler();
+

@@ -33,8 +33,8 @@ for ( i = [0 : 23] ){
 }
 
 module belt_holder_holes(){
- translate([-4.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=1.7, $fn=10);
- translate([-45.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=1.7, $fn=10);
+ translate([-4.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=M3_diameter_horizontal/2, $fn=30);
+ translate([-45.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=M3_diameter_horizontal/2, $fn=30);
 }
 
 // Final part

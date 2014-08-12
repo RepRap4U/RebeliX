@@ -17,7 +17,7 @@ module y_motor_base(){
       translate([base_thickness,4,motor_base_thickness]) cube([60,60,60]);
 	}
 	// Voditko do hlinikoveho profilu	
-	translate([-2,15-4,0]) cube([4,8,motor_length+motor_base_thickness]);
+	translate([-2,15-ALU_cut_width_horizontal/2,0]) cube([4,ALU_cut_width_horizontal,motor_length+motor_base_thickness]);
 }
 
 module y_motor_cuts(){			
@@ -44,21 +44,22 @@ module y_motor_cuts(){
 module y_motor_holes(){
 	// Otvor pro prisroubovani do hlinikoveho profilu
 	translate([base_thickness-M6_head_height,15,16]) rotate([0,90,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
-	translate([-3,15,16]) rotate([0,90,0]) cylinder(r = 3.05, h = 10, $fn = 30);
+	translate([-3,15,16]) rotate([0,90,0]) cylinder(r = M6_diamater_horizontal/2, h = 10, $fn = 30);
 
 	// Otvory pro motor
 	translate([base_thickness+5.65,4+5.65,-0.1]){
-		translate([0,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
-		translate([31,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
-		translate([0,31,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
-		// Korekce pozice motoru - napinani remenu
-		translate([0+2,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
-		translate([31+2,0,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
-		translate([0+2,31,-0.1]) cylinder(h = 20, r=1.9, $fn=30);
-		
-		translate([0,0-1.9,-0.1]) cube([1.9,2*1.9,10]);
-		translate([31,0-1.9,-0.1]) cube([1.9,2*1.9,10]);
-		translate([0,31-1.9,-0.1]) cube([1.9,2*1.9,10]);		
+		hull(){
+			translate([0,0,-0.1]) cylinder(h = 20, r=M3_diameter/2, $fn=30);
+			translate([0+2,0,-0.1]) cylinder(h = 20, r=M3_diameter/2, $fn=30);
+		}
+		hull(){
+			translate([31,0,-0.1]) cylinder(h = 20, r=M3_diameter/2, $fn=30);
+			translate([31+2,0,-0.1]) cylinder(h = 20, r=M3_diameter/2, $fn=30);
+		}
+		hull(){
+			translate([0,31,-0.1]) cylinder(h = 20, r=M3_diameter/2, $fn=30);
+			translate([0+2,31,-0.1]) cylinder(h = 20, r=M3_diameter/2, $fn=30);	
+		}
 	}	
 	// Vyrez pro stred motoru
 	translate([base_thickness+21.3,4+21.3,-0.1]) cylinder(r = 11.8,h = 10,$fn = 64);

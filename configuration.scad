@@ -11,6 +11,22 @@ M6_head_diameter = 10.6+spare;
 M6_head_height = 3.6;
 //M6_head_height = 4.5;
 
+//Prumery sroubu a tyci
+M8_smooth_rod_diameter = 8.1;
+M8_smooth_rod_diameter_catch = 8.2;
+M6_diameter = 6.2;
+M6_diamater_horizontal = 6.5;
+M3_diameter = 3.2;
+M3_diameter_horizontal = 3.2;
+
+//Prumery matic
+M3_nut_diameter = 6.8;
+M3_nut_diameter_horizontal = 6.8;
+
+//ALU profile parameters
+ALU_cut_width = 7.9;
+ALU_cut_width_horizontal = 7.9;
+
 // Delka motoru (ovlivni dily pro osy Z a Y)
 //SX17-1003LQFE (doporuceno hlavne na osu Z)
 //motor_length = 29.5;

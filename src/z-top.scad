@@ -21,9 +21,9 @@ module z_top_base(){
  translate([0,0,0]) cube([15,30+base_offset,6]);
  translate([0,0,0]) cube([3.5,22+base_offset,7+6]);
  translate([15,8,0]) cube([10,10,6]);
- translate([0,0,0]) cube([30,8,6+20]);
- translate([3.5+4.35+14.45-4+motor_offset,-2,31]) cube([8,3,height-31]);
- translate([3.5+4.35+14.45-15+motor_offset,-2,15-4]) cube([30,3,8]); 
+ translate([0,0,0]) cube([30,ALU_cut_width_horizontal,6+20]);
+ translate([3.5+4.35+14.45-ALU_cut_width_horizontal/2+motor_offset,-2,31]) cube([ALU_cut_width_horizontal,3,height-31]);
+ translate([3.5+4.35+14.45-15+motor_offset,-2,15-ALU_cut_width_horizontal/2]) cube([30,3,ALU_cut_width_horizontal]); 
 }
 
 module z_top_cuts(){
@@ -48,10 +48,10 @@ module z_top_holes(){
  // Otvory pro prisroubovani do hlinikoveho profilu
  translate([3.5+4.35+14.45+motor_offset,8-M6_head_height,15]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
  translate([3.5+4.35+14.45+motor_offset,8-M6_head_height,height-10]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);		
- translate([3.5+4.35+14.45+motor_offset,-3,15]) rotate([-90,0,0]) cylinder(r = 3.05, h = 10, $fn = 30);
- translate([3.5+4.35+14.45+motor_offset,-3,height-10]) rotate([-90,0,0]) cylinder(r = 3.05, h = 10, $fn = 30);
+ translate([3.5+4.35+14.45+motor_offset,-3,15]) rotate([-90,0,0]) cylinder(r = M6_diamater_horizontal/2, h = 10, $fn = 30);
+ translate([3.5+4.35+14.45+motor_offset,-3,height-10]) rotate([-90,0,0]) cylinder(r = M6_diamater_horizontal/2, h = 10, $fn = 30);
  // Otvor pro hlazenou tyc 8mm
- translate([3.5+4.35,21.3+base_offset,-0.1]) rotate([0,0,0]) cylinder(r = 4.1, h = 20, $fn = 30);
+ translate([3.5+4.35,21.3+base_offset,layer_height]) rotate([0,0,0]) cylinder(r = M8_smooth_rod_diameter_catch/2, h = 20, $fn = 30);
 }
 
 // Cela soucastka
