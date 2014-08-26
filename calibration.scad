@@ -37,7 +37,7 @@ module belt_holder_beltcut(){
  // Belt slit
  //translate([-66,-0.5+10,3]) 
  translate([0,1.5,0])
- cube([67,0.6,15]);
+ cube([67,0.8,15]);
  // Smooth insert cutout
  //translate([-66,-0.5+10,12]) 
  translate([0,1.5,5])

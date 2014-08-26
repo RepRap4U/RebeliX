@@ -30,7 +30,7 @@ module x_carriage_beltcut(){
  // Cut clearing space for the belt
  translate([-39,5,7]) cube([50,13,15]);
  // Belt slit
- translate([-50,21.5+10,6]) cube([67,0.55,15]);
+ translate([-50,21.5+10,6]) cube([67,0.7,15]);
  // Smooth entrance
  translate([-56,21.7+10,16.5]) rotate([45,0,0]) cube([67,15,15]);
  // Teeth cuts
