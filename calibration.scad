@@ -3,7 +3,7 @@ include <./configuration.scad>
 difference(){
 	union(){
 		cube([36,30,5]);
-		translate([0,23,0])cube([35,10,20]);
+		translate([0,23,0])cube([35,10,25]);
 		translate([M6_diameter*2+8,20,0])cube([ALU_cut_width_horizontal,11,20]);
 	}
 	translate([M6_diameter,M6_diameter+M3_diameter+5,-1])cylinder(r=M6_diameter/2,h=7,$fn=32);
@@ -25,7 +25,25 @@ difference(){
 		cylinder(r = M6_diamater_horizontal/2, h = 15, $fn = 30);
 		cylinder(r = M6_head_diameter/2, h = 4, $fn = 30);
 	}
+	
+	translate([-1,27,18.5])belt_holder_beltcut();
 }
 
 translate([M6_diameter*2+8,0,0])cube([ALU_cut_width,M6_diameter*2+8,7]);
 
+module belt_holder_beltcut(){
+ echo(belt_tooth_ratio*belt_tooth_distance);
+ position_tweak=-1.1;
+ // Belt slit
+ //translate([-66,-0.5+10,3]) 
+ translate([0,1.5,0])
+ cube([67,0.6,15]);
+ // Smooth insert cutout
+ //translate([-66,-0.5+10,12]) 
+ translate([0,1.5,5])
+ rotate([45,0,0]) cube([67,15,15]);
+ // Individual teeth
+ for ( i = [0 : 23] ){
+ 	translate([0+i*belt_tooth_distance+position_tweak,0,0]) cube([belt_tooth_ratio*belt_tooth_distance,1.7,15]);
+ }
+}
