@@ -19,7 +19,7 @@ module corner_coupler(diameter=M6_diameter/2,width=30,length=60,height=base_thic
 
 			//Zapusteni do profilu
 			translate([-length/4,0,height/2])cube([cut_width,width,embed*2],center=true);
-			translate([width/2,0,height/2])rotate(90,0,0)cube([cut_width,width,embed*2],center=true);
+			translate([width/2+0.5,0,height/2])cube([width-1,cut_width,embed*2],center=true);
 		}
 		//Diry na srouby
 		translate([-length/4,0,embed/2])cylinder(h=height+embed+0.1,r=diameter,$fs=0.5,center=true);
