@@ -12,7 +12,7 @@ difference(){
 		cube([30,30,4*layer_height]);
 		translate([15-5,15-5,0]) cube([10,10,5]);
 	}	
-	// Nabeh
+	// Pitch
 	translate([0,15-5,4.7]) rotate([45,0,0]) cube([40,3,3]);
 	translate([0,15+5,4.7]) rotate([45,0,0]) cube([40,3,3]);
 	translate([15-5,0,4.7]) rotate([45,0,90]) cube([40,3,3]);

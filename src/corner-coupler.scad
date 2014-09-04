@@ -8,24 +8,24 @@
 
 include <../configuration.scad>
 
-// Postacuji i 4 mm
+// 4 mm is fine as well
 base_thickness = 5;
 
 module corner_coupler(diameter=M6_diameter/2,width=30,length=60,height=base_thickness,embed=1.5,cut_width=ALU_cut_width){
 	difference(){
 		union(){
-			//Zakladni blok
+			//Base block
 			cube([length,width,height],center=true);
 
-			//Zapusteni do profilu
+			//Embedding
 			translate([-length/4,0,height/2])cube([cut_width,width,embed*2],center=true);
 			translate([width/2+0.5,0,height/2])cube([width-1,cut_width,embed*2],center=true);
 		}
-		//Diry na srouby
+		//Screws holes
 		translate([-length/4,0,embed/2])cylinder(h=height+embed+0.1,r=diameter,$fs=0.5,center=true);
 		translate([width/2,0,embed/2])cylinder(h=height+embed+0.1,r=diameter,$fs=0.5,center=true);
 
-		//Seriznuti rohu
+		//Corner cuts
 		translate([0,-width/2-2.5, -height/2-0.1]) 
 		rotate([45,0,0]) 
 		cube([length+0.1,5, 5],center=true);
