@@ -1,17 +1,17 @@
-// Vyska vrstvy pro tisknuti dilu [mm]
+// Layer high for the printing [mm]
 layer_height = 0.25; //Slic3r->Print Settings->Layers and perimeters->Layer height
 
-// Rezerva prumeru hlavy sroubu [mm]
+// Spare for the screws heads [mm]
 spare = 1;
-// Prumer hlavy M6 sroubu (pricte se rezerva) [mm]
+// M6 screw diameter [mm]
 M6_head_diameter = 10.6+spare;
 //M6_head_diameter = 12+spare;
 
-// Vyska hlavy M6 sroubu (dulezite pro zapusteni hlavy sroubu do plastu) [mm]
+// M6 head high (for hiding it) [mm]
 M6_head_height = 3.6;
 //M6_head_height = 4.5;
 
-//Prumery sroubu a tyci
+// Screws and rods diameters
 M8_smooth_rod_diameter = 8.3;
 M8_smooth_rod_diameter_catch = 8.8;
 M6_diameter = 6.6;
@@ -19,28 +19,28 @@ M6_diamater_horizontal = 6.5;
 M3_diameter = 3.7;
 M3_diameter_horizontal = 3.5;
 
-//Prumery matic
+// Nuts diameters
 M3_nut_diameter = 7.0;
 M3_nut_diameter_horizontal = 6.7;
 
-//ALU profile parameters
+// ALU profile parameters
 ALU_cut_width = 7.9;
 ALU_cut_width_horizontal = 7.7;
 
-// Delka motoru (ovlivni dily pro osy Z a Y)
-//SX17-1003LQFE (doporuceno hlavne na osu Z)
+// Motors length/depth (for axes Z and Y)
+//SX17-1003LQFE (recommended for the Z axis)
 //motor_length = 29.5;
-//SX17-1003 (doporuceno hlavne na osu Z)
+//SX17-1003 (recommended for the Z axis)
 motor_length = 34;
 //SX17-1005
 //motor_length = 40;
-//SX17-0905 - zde je jiz problem s velkou vyskou motoru na ose Z - musi se upravit endstop-holder
+//SX17-0905 - this motor is too high - the Z end stop holder has to be adjusted
 //motor_length = 48;
 
-// Sirka vytlacovaneho materialu [mm]
+// Extrusion width [mm]
 extrusion_width = 0.66; //Slic3r->Print Settings->Advanced->Default extrusion width
 
-/// Vyberte typ remenu ******************************************************
+/// Belt type ******************************************************
 
 // GT2 
 //belt_tooth_distance = 2;
