@@ -3,6 +3,7 @@ IMG_DIR=PNGs
 SRC_DIR=src
 PLATE_DIMMENSIONS=120
 SIMARRANGE=/usr/local/bin/simarrange
+STLSORT=stlsort
 OPENSCAD_APP=openscad
 
 SOURCES=$(wildcard $(SRC_DIR)/*.scad)
@@ -18,6 +19,7 @@ default: $(TARGETS)
 
 $(STL_DIR)/%.stl: $(SRC_DIR)/%.scad
 	$(OPENSCAD_APP) -m make -o $@ $<
+	$(STLSORT) $@ || :
 	
 images: $(IMAGES)
 
