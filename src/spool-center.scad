@@ -5,8 +5,8 @@
 // Martin Neruda <neruda@reprap4u.cz>
 // http://www.reprap4u.cz
 
-// Prumer otvoru v civce
-spool_hole_big = 50.1; // "plasty Mladec"
+// Spool inside diameter
+spool_hole_big = 50.1; // "Mladec"
 spool_hole_small = 32; // "MK Floria"
 
 union() {

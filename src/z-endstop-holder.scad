@@ -12,7 +12,7 @@ difference(){
 	union() {
 		translate([-0.1,6.5,10])cube([1.5,27,11]);
 		
-		// Otvory pro ZIP pasku
+		// Zip tie holes
 		translate([-0.1,12,13]) rotate([0,90,0]) cylinder(r=1.5, h = 10, $fn=30);
 		translate([-0.1,22,13]) rotate([0,90,0]) cylinder(r=1.5, h = 10, $fn=30);
 		

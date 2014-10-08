@@ -10,10 +10,10 @@ include <../configuration.scad>
 
 height = 50;
 
- // Hodnota musi byt stejna i v z_bottom (minimum 13)
+ // Same value as in z_bottom (minimum 13)
 base_offset = 13;
 
-// Posun motoru do strany
+// Stepper side offset
 motor_offset = 0;
 
 module z_top_base(){
@@ -39,22 +39,22 @@ module z_top_cuts(){
  
  translate([25,8,-0.1]) rotate([0,0,45]) cube([10,14,10]); 
  
- // Seriznuti pro snazsi tisk
+ // Cut for easier print
  translate([3.5+4.35+14.45-15+motor_offset,0,15-4]) rotate([160,0,0]) cube([30,3,8]);
  translate([3.5+4.35+14.45-15+motor_offset,0,31]) rotate([160,0,0]) cube([30,3,8]); 
 }
 
 module z_top_holes(){
- // Otvory pro prisroubovani do hlinikoveho profilu
+ // ALU mount holes
  translate([3.5+4.35+14.45+motor_offset,8-M6_head_height,15]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
  translate([3.5+4.35+14.45+motor_offset,8-M6_head_height,height-10]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);		
  translate([3.5+4.35+14.45+motor_offset,-3,15]) rotate([-90,0,0]) cylinder(r = M6_diamater_horizontal/2, h = 10, $fn = 30);
  translate([3.5+4.35+14.45+motor_offset,-3,height-10]) rotate([-90,0,0]) cylinder(r = M6_diamater_horizontal/2, h = 10, $fn = 30);
- // Otvor pro hlazenou tyc 8mm
+ // 8mm smooth rod hole
  translate([3.5+4.35,21.3+base_offset,layer_height]) rotate([0,0,0]) cylinder(r = M8_smooth_rod_diameter_catch/2, h = 20, $fn = 30);
 }
 
-// Cela soucastka
+// Whole part
 module z_top(){
  difference(){
   z_top_base();

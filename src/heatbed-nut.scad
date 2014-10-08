@@ -7,9 +7,9 @@
 
 include <../configuration.scad>
 
-// Prumer celeho drzadla
+// Diameter of the whole holder
 diameter = 16;
-// Prumer zoubku na kole
+// Tooth diameter
 tooth_diameter = 2.4;
 
 difference(){

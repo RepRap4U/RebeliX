@@ -9,15 +9,15 @@
 
 include <../configuration.scad>
 
-// Mezera mezi motorem a soucastkou (tlumi prenaseni vibraci)
+// Space between stepper and the part (less vibrations)
 space = 0.6;
 
 height = motor_length + space;
 
-// Hodnota musi byt stejna i v z_top (minimum 13)
+// Same value as in z_top (minimum 13)
 base_offset = 13; 
 
-// Posun motoru do strany
+// Stepper side offset
 motor_offset = 0; 
 
 module z_bottom_base(){
@@ -40,7 +40,7 @@ module z_bottom_cuts(){
  
  translate([-0.1,42.3+base_offset,6]) rotate([45,0,0]) cube([10,70,50]); 
  
- // Otvor pro kabely motoru 
+ // Stepper wires hole
  //translate([5+21.3-5,5,height+6-7]) cube([10,30,30]); 
  translate([5+21.3-5,5,height+6-9]) cube([10,20,30]); 
  translate([5+21.3,5,height<=34+space ? 34+space+7 : height+7]) rotate([0,45,0]) cube([5,30,5]); 
@@ -49,21 +49,21 @@ module z_bottom_cuts(){
 
 module z_bottom_holes(){
 
- // Otvor pro hlazenou tyc 8mm
+ // M8 rod hole
  translate([5+4.35,21.3+base_offset,-0.1]) rotate([0,0,0]) cylinder(r = M8_smooth_rod_diameter_catch/2, h = 20, $fn = 30);
 
- // Otvory pro motor
+ // Stepper hole
  translate([5+5.65,base_offset+5.65,-0.1]){
 	translate([0,0,0]) cylinder(h = 20, r=M3_diameter/2, $fn=16);
 	translate([31,0,0]) cylinder(h = 20, r=M3_diameter/2, $fn=16);
 	translate([0,31,0]) cylinder(h = 20, r=M3_diameter/2, $fn=16);
  }
- // Otvor pro prisroubovani do hlinikoveho profilu
+ // ALU mount holes
  translate([2.5+21.3+motor_offset,base_offset-M6_head_height-2.5,height/2]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 20, $fn = 30);
  translate([2.5+21.3+motor_offset,-3,height/2]) rotate([-90,0,0]) cylinder(r = M6_diamater_horizontal/2, h = 20, $fn = 30);
 }
 
-// Cela soucastka
+// Whole part
 module z_bottom(){
  difference(){
   z_bottom_base();

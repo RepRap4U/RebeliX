@@ -20,7 +20,7 @@ module extruder_idler_holes(){
   translate([5.6,0,11-4])rotate([0,-90,0])cylinder(r1=9,r2=6, h=2.1);
   }
   cube([7,24,25], center= true);
-  // Vyrez pro odklopeni
+  // Opening cutout
   translate([-12.1,30,11]) rotate([0,90,0]) cylinder(r=9,h=25); 
   
   // Idler shaft
