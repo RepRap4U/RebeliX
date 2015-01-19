@@ -6,8 +6,8 @@
 // http://www.reprap4u.cz
 
 // Prumer otvoru v civce
-spool_hole_big = 50.1; // "plasty Mladec"
-spool_hole_small = 32; // "MK Floria"
+spool_hole_big = 74; // "plasty Mladec"
+spool_hole_small = 31; // "MK Floria"
 
 union() {
     difference()

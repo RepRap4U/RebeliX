@@ -22,14 +22,14 @@ motor_length = 29.5;
 //motor_length = 48;
 
 // Sirka vytlacovaneho materialu [mm]
-extrusion_width = 0.66; //Slic3r->Print Settings->Advanced->Default extrusion width
+extrusion_width = 0.55; //Slic3r->Print Settings->Advanced->Default extrusion width
 
 /// Vyberte typ remenu ******************************************************
 
 // GT2 
-belt_tooth_distance = 2;
-belt_tooth_ratio = 0.5;
+//belt_tooth_distance = 2;
+//belt_tooth_ratio = 0.5;
 
 // T2.5
-//belt_tooth_distance = 2.5;
-//belt_tooth_ratio = 0.68;
+belt_tooth_distance = 2.5;
+belt_tooth_ratio = 0.68;

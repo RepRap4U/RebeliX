@@ -702,7 +702,7 @@ module malcolm_hotend_holes ()
 //groovemount_holes ();
 module groovemount_holes ()
 {
-	extruder_recess_d=16.2; 
+	extruder_recess_d=16.4; 
 	extruder_recess_h=5.5;
 
 	// Recess in base

@@ -10,7 +10,7 @@ include <../configuration.scad>
 difference(){
 	union(){
 		cube([30,30,4*layer_height]);
-		translate([15-5,15-5,0]) cube([10,10,5]);
+		translate([15-4.75,15-4.75,0]) cube([9.5,9.5,5]);
 	}	
 	// Nabeh
 	translate([0,15-5,4.7]) rotate([45,0,0]) cube([40,3,3]);
