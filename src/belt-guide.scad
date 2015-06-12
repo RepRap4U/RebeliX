@@ -8,7 +8,7 @@
 include <../configuration.scad>
 
 wall= 2*extrusion_width;
-clearence= 0.1; 
+clearence= 0.2; 
 
 module belt_guide_base(){
  cylinder(r=5+clearence+2*wall, h=5-0.7, $fn=60);

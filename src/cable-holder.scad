@@ -10,7 +10,7 @@ include <../configuration.scad>
 width = 13;
 height = 7;
 
-// Vyrez v hlinikovem profilu
+// Space in the ALU profile
 space = 8.2;
 
 difference(){

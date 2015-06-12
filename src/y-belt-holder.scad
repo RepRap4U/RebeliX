@@ -19,7 +19,7 @@ module belt_holder_beltcut(){
  echo(belt_tooth_ratio*belt_tooth_distance);
  position_tweak=-1.1;
  // Belt slit
- translate([-66,-0.5+10,3]) cube([67,0.55,15]);
+ translate([-66,-0.5+10,3]) cube([67,0.8,15]);
  // Smooth insert cutout
  translate([-66,-0.5+10,12]) rotate([45,0,0]) cube([67,15,15]);
  // Individual teeth
@@ -33,8 +33,8 @@ for ( i = [0 : 23] ){
 }
 
 module belt_holder_holes(){
- translate([-4.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=1.7, $fn=10);
- translate([-45.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=1.7, $fn=10);
+ translate([-4.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=M3_diameter_horizontal/2, $fn=30);
+ translate([-45.5,0.1,7.5]) rotate([-90,0,0]) cylinder(h=50, r=M3_diameter_horizontal/2, $fn=30);
 }
 
 // Final part
