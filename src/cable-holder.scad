@@ -1,6 +1,6 @@
 // RebeliX
 //
-// cable_holder
+// cable-holder
 // GNU GPL v3
 // Martin Neruda <neruda@reprap4u.cz>
 // http://www.reprap4u.cz

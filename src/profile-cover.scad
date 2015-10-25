@@ -1,6 +1,6 @@
 // RebeliX
 //
-// profile cover
+// profile-cover
 // GNU GPL v3
 // Martin Neruda <neruda@reprap4u.cz>
 // http://www.reprap4u.cz

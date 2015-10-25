@@ -21,12 +21,12 @@ use <inc/parametric_involute_gear_v5.0.scad>
 
 
 
-m3_diameter = 3.4;
-m3_nut_diameter = 5.8;
+m3_diameter = 3.5;
+m3_nut_diameter = 6;//5.8;
 
 gear_distance = 40;
 
-small();
+translate([0,0,gear_width / 2 + 3]) rotate([0,180,0]) small();
 //%translate([gear_distance, 0, 0]) rotate([0, 180, 92]) big(); //this should touch, teeth should mesh
 translate([-gear_distance - 10, 10, 0]) big();
 
@@ -46,7 +46,7 @@ module small(){
                     rim_thickness = gear_width/2,
                     hub_thickness = 0,
                     hub_diameter = 18,
-                    bore_diameter = 5.25,
+                    bore_diameter = 0,
                     circles=0,
                     twist = teeth_twist/teeth_small);
             gear (number_of_teeth=teeth_small,
@@ -55,7 +55,7 @@ module small(){
                     rim_thickness = gear_width,
                     hub_thickness = 0,
                     hub_diameter = 18,
-                    bore_diameter = 5.25,
+                    bore_diameter = 0,
                     circles=0,
                     twist = teeth_twist/teeth_small*2);
             //hub. Two part to make it thicker
@@ -67,12 +67,12 @@ module small(){
             }
         }
         //bore
-        translate([0, 0, -gear_width / 2 + 0.1]) cylinder(r=5.25 / 2, h=gear_width + 9.2);
+        translate([0, 0, -gear_width / 2 -0.1]) cylinder(r=5.1 / 2, h=gear_width + 9.2 + 1,$fn=32);
 
         translate([0, 0, gear_width / 2 + 4.5]) rotate([0, 90, 0]) {
-            cylinder(r=m3_diameter / 2, h=20);
-            translate([0, 0, 5]) nut(m3_nut_diameter, 2.5, false);
-            translate([-10, -m3_nut_diameter / 2, 5]) cube([10, m3_nut_diameter, 2.5]);
+            cylinder(r=m3_diameter / 2, h=20,$fn=16);
+            translate([0, 0, 5]) nut(m3_nut_diameter, 2.6, false);
+            translate([-10, -m3_nut_diameter / 2, 5]) cube([10, m3_nut_diameter, 2.6]);
         }
     }
 }
@@ -116,9 +116,9 @@ module big(){
     }
     //threaded bolt trap
     difference(){
-        translate([0, 0, -gear_width / 2]) cylinder(r=8, h=7 + layer_height * 9);
-        translate([0, 0, -gear_width / 2 + layer_height * 6 + 4]) nut(8.1, h=8);
-        translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=5.4 / 2, h=gear_width + 9.2,$fn=32);
+        translate([0, 0, -gear_width / 2]) cylinder(r1=10.5, r2=8, h=7 + layer_height * 9,$fn=64);
+        translate([0, 0, -gear_width / 2 + layer_height * 6 + 4]) nut(8, h=8);
+        translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=5.2 / 2, h=gear_width + 9.2,$fn=32);
     }
 
 }

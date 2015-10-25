@@ -356,16 +356,18 @@ module gear (
 					outer_radius = outer_radius,
 					half_thick_angle = half_thick_angle,
 					involute_facets=involute_facets);
-
-				if (gear_thickness < rim_thickness)
-					translate ([0,0,gear_thickness])
-					cylinder (r=rim_radius,h=rim_thickness-gear_thickness+1);
+					
+				//if (gear_thickness < rim_thickness)
+					//translate ([0,0,gear_thickness])
+					//cylinder (r=rim_radius,h=rim_thickness-gear_thickness+1,$fn=32);
 			}
 			if (gear_thickness > rim_thickness)
 				cylinder (r=rim_radius,h=gear_thickness);
+			
 			if (hub_thickness > gear_thickness)
 				translate ([0,0,gear_thickness])
 				cylinder (r=hub_diameter/2,h=hub_thickness-gear_thickness);
+			
 		}
 		translate ([0,0,-1])
 		cylinder (

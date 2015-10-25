@@ -20,7 +20,7 @@ y_linear_bearings();
 
 // Linear bushing options
 
-m3_diameter = 3.4;
+m3_diameter = 3.5;
 lm8uu_diameter=15;
 lm8uu_length=24;
 lm8uu_radius = lm8uu_diameter / 2;

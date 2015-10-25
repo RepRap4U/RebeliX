@@ -8,7 +8,7 @@
 bearing_diameter = 15;
 
 module horizontal_bearing_base(bearings=1){
- translate(v=[0,0,6]) cube(size = [24,8+bearings*25,12], center = true);	
+ translate(v=[0,0,6]) cube(size = [24,4+bearings*24,12], center = true);	
 }
 module horizontal_bearing_holes(bearings=1){
  cutter_lenght = 10+bearings*25;
@@ -19,8 +19,8 @@ module horizontal_bearing_holes(bearings=1){
  difference(){
   translate(v=[0,0,12+1.5]) rotate(a=[90,0,0]) translate(v=[0,0,-cutter_lenght/2]) cylinder(h = cutter_lenght, r=bearing_diameter/2, $fn=50);
   // Bearing retainers
-  translate(v=[0,1-holder_lenght/2,3+1.5]) cube(size = [24,6,8], center = true);
-  translate(v=[0,-1+holder_lenght/2,3+1.5]) cube(size = [24,6,8], center = true);
+  translate(v=[0,1.5-holder_lenght/2,3+1.5]) cube(size = [24,6,8], center = true);
+  translate(v=[0,-1.5+holder_lenght/2,3+1.5]) cube(size = [24,6,8], center = true);
  }
  
  // Ziptie cutouts
@@ -66,7 +66,7 @@ module vertical_bearing_base(){
 
 module vertical_bearing_holes(){
   translate(v=[0,0,-1]) cylinder(h = 62, r=bearing_diameter/2, $fn = 60);
-  rotate(a=[0,0,-70]) translate(v=[8,0,31.5]) cube(size = [5,1,62], center = true);
+  rotate(a=[0,0,90]) translate(v=[8,0,31.5]) cube(size = [5,1,62], center = true);
 }
 
 difference(){

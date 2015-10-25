@@ -1,10 +1,9 @@
 // RebeliX
 //
-// spool holder
+// spool-holder
 // GNU GPL v3
 // Martin Neruda <neruda@reprap4u.cz>
 // http://www.reprap4u.cz
-// Inspired by Rebel II
 
 include <../configuration.scad>
 
@@ -30,7 +29,7 @@ module drzak_rezy(){
     translate([30,0,-0.1]) cube([width,height+0.1,40]);
   }
   // Otvor pro sroub M6
-  translate([width-15,7,15]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
+  translate([width-15,5,15]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
   translate([width-15,-4,15]) rotate([-90,0,0]) cylinder(r = 3.05, h = 20, $fn = 30);
   // Otvor pro tyc M8
   translate([15,height-5,-0.1]) cylinder(r = 8, h = 20, $fn = 30);

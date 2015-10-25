@@ -5,44 +5,72 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://prusamendel.org
 
+
+
 use <bearing.scad>
 rod_distance = 45;
 
-module x_end_base(){
-// Main block
+bearing_diameter = 15;
+thinwall = 3;
+bearing_size = bearing_diameter + 2 * thinwall;
+
 height = 58;
-translate(v=[-15,-9,height/2]) cube(size = [17,39,height], center = true);
-// Bearing holder
- vertical_bearing_base();	
-//Nut trap
- // Cube
- translate(v=[-2-2,-17,4]) cube(size = [8,16,8], center = true);
- // Hexagon
- translate(v=[0,-17,0]) rotate([0,0,30]) cylinder(h = 8, r=8, $fn = 6);
-}
+width = 21;
+
+nut_classic = 0;
+
+module x_end_base(){
+  // Hlavni blok
+  translate([-12,-20,height/2]) cube([width,25,height], center = true);	
+  // Drzak loziska
+  translate([-12,0,0]) rotate([0,0,90]) vertical_bearing_base();
+  // Hexagon
+  if(nut_classic){
+    // Osmihran
+    translate(v=[-4,-17,0]) rotate([0,0,30]) cylinder(h = 3+5, r=12, $fn = 6);    
+  } else{   
+    translate(v=[-4,-17,0]) rotate([0,0,30]) cylinder(h = 3+4+3, r=12, $fn = 6);
+  }
+  }
 
 module x_end_holes(){
- vertical_bearing_holes();
-// Belt hole
-translate(v=[-1,0,0]){
-difference(){
-	translate(v=[-5.5-10+1.5,-10,30]) cube(size = [10,46,28], center = true);
+  translate([-12,0,0]) rotate([0,0,90]) vertical_bearing_holes();
+  // Vyrez pro remen
+  translate([2,0,0]){
+  difference(){
+	difference(){
+	  union(){
+        translate([-5.5-10+1.5,-34,30]) cube(size = [11,20,28], center = true);
+	    translate([-5.5-10+1.5,-24,30]) rotate([0,90,0]) cylinder(r=14,h=11,$fn=80,center=true);
+	  }	
+	}  
 	// Nice edges
-	translate(v=[-5.5-10+1.5,-10,30+23]) rotate([0,45,0]) cube(size = [10,46,28], center = true);
-	translate(v=[-5.5-10+1.5,-10,30+23]) rotate([0,-45,0]) cube(size = [10,46,28], center = true);
-	translate(v=[-5.5-10+1.5,-10,30-23]) rotate([0,45,0]) cube(size = [10,46,28], center = true);
-	translate(v=[-5.5-10+1.5,-10,30-23]) rotate([0,-45,0]) cube(size = [10,46,28], center = true);
-
+	translate([-5.5-10+1.5,-10,30+23]) rotate([0,45,0]) cube(size = [10,46,28], center = true);
+	translate([-5.5-10+1.5,-10,30+23]) rotate([0,-45,0]) cube(size = [10,46,28], center = true);
+	translate([-5.5-10+1.5,-10,30-23]) rotate([0,45,0]) cube(size = [10,46,28], center = true);
+	translate([-5.5-10+1.5,-10,30-23]) rotate([0,-45,0]) cube(size = [10,46,28], center = true);
+  }
 }
-}
 
-// Bottom pushfit rod
-translate(v=[-15,-41.5,6]) rotate(a=[-90,0,0]) pushfit_rod(8.1,50);
-// Top pushfit rod
-translate(v=[-15,-41.5,rod_distance+6]) rotate(a=[-90,0,0]) pushfit_rod(8.1,50);
-// Nut trap
- translate(v=[0,-17,-0.5]) cylinder(h = 4, r1=3.3, r2=2.8, $fn=25);
- translate(v=[0,-17,3]) rotate([0,0,30]) cylinder(h = 10, r=4.5, $fn = 6);
+  // Bottom pushfit rod
+  translate([-12,-41.5,6]) rotate(a=[-90,0,0]) pushfit_rod(8.1,31);
+  // Top pushfit rod
+  translate([-12,-41.5,rod_distance+6]) rotate(a=[-90,0,0]) pushfit_rod(8.1,31);
+  if(nut_classic){
+    // Klasicky zapustena matka
+    translate(v=[0,-17,-0.5]) cylinder(h = 4, r=3, $fn=25);
+    translate(v=[0,-17,3]) rotate([0,0,30]) cylinder(h = 10, r=4.5, $fn = 6);
+    // Rezerva pro pruznou spojku
+    translate([0,-17,3+5]) cylinder(h = height, r=4.8, $fn=42);
+  } else {
+    // Otvor na matku
+    translate([0,-17,-0.1]) cylinder(h = 4, r=3.3, $fn=25);
+    translate([0,-17,3+4.1+0.3]) cylinder(h = 4, r=3.3, $fn=25);
+    translate([-0.5,-17,3]) rotate([0,0,0]) cylinder(h = 4.1, r=4.6, $fn = 6);
+    translate([0,-17-cos(30)*4.6,3]) cube([10,2*cos(30)*4.6,4.1]);
+    // Rezerva pro pruznou spojku
+    translate([0,-17,3+4+3]) cylinder(h = height, r=4.8, $fn=42);    
+  }    
 }
 
 
@@ -56,12 +84,11 @@ module x_end_plain(){
 
 x_end_plain();
 
-
 module pushfit_rod(diameter,length){
  cylinder(h = length, r=diameter/2, $fn=30);
  difference(){
- 	translate(v=[0,-diameter/2.85,length/2]) rotate([0,0,45]) cube(size = [diameter/2,diameter/2,length], center = true);
- 	translate(v=[0,-diameter/4-diameter/2-0.4,length/2]) rotate([0,0,0]) cube(size = [diameter,diameter/2,length], center = true);
+ 	translate([0,-diameter/2.85,length/2]) rotate([0,0,45]) cube(size = [diameter/2,diameter/2,length], center = true);
+ 	translate([0,-diameter/4-diameter/2-0.4,length/2]) rotate([0,0,0]) cube(size = [diameter,diameter/2,length], center = true);
  }
  //translate(v=[0,-diameter/2-2,length/2]) cube(size = [diameter,1,length], center = true);
 }
