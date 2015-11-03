@@ -14,10 +14,10 @@
  * @id small-gear
  */
 
-include <../../configuration.scad>
-include <inc/metric.scad>
-include <inc/functions.scad>
-use <inc/parametric_involute_gear_v5.0.scad>
+include <../../../configuration.scad>
+include <../inc/metric.scad>
+include <../inc/functions.scad>
+use <../inc/parametric_involute_gear_v5.0.scad>
 
 
 

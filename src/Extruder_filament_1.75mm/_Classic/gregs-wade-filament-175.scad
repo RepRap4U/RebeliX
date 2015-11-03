@@ -4,9 +4,10 @@
 // Extruder based on prusa git repo.
 // http://www.thingiverse.com/thing:6713
 // modified for i3 by vlnofka <vlnofka@gmail.com>
+// modified for RebeliX X2 by Martin Neruda <http://www.reprap4u.cz>
 
-include<../../configuration.scad>
-include<../inc/functions.scad>
+include<../../../configuration.scad>
+include<../../inc/functions.scad>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Define the hotend_mounting style you want by specifying hotend_mount=style1+style2 etc.
@@ -15,9 +16,7 @@ j_head_groovemount=1;
 3draty_groovemount=2;
 rebel_groovemount=4;
 
-//default_extruder_mount=malcolm_extrusion_mount;
-//default_extruder_mount=groovemount;
-default_extruder_mount=4;
+default_extruder_mount=1;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,20 +33,12 @@ translate([-30,40,0]) wadeidler();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Parameters defining the wade body:
-//Drzak trysky
-mezera = 0.3;
-tloustka_krytky = 6 - 2*mezera;
-big_d = 16.2 - 2*mezera;
-small_d = 12.2 - mezera;
-big_h=5.8 - mezera/2;
-small_h= 4.6 - mezera/2;
 
 wade_body_offset = 3;
-elevation = 9; //zmeneno puvodne 15
+elevation = 9;
 wade_block_height=55+elevation;
 wade_block_width=24 - wade_body_offset;
 wade_block_depth=28;
-
 
 m3_diameter = 3.4;
 m3_nut_diameter = 6.1+0.3;
@@ -150,16 +141,7 @@ module wade(
 	difference ()
 	{
 		union()
-		{
-			
-			// Drzak trysky
-			translate([-30,15,tloustka_krytky/2]) {
-			  cube([28 - mezera,base_thickness-3 - mezera,tloustka_krytky ],center=true);
-			
-			  translate([0,(base_thickness-2 - mezera)/2 - big_h/2,6/2]) cube([big_d,big_h-1,6],center=true);
-			  translate([0,-(base_thickness-3 - mezera)/2 + small_h/2,6/2]) cube([small_d,small_h,6],center=true);
-			}
-			
+		{		
 			// The wade block.
 			translate([wade_body_offset,0,0])
 			cube([wade_block_width,wade_block_height,wade_block_depth]);
@@ -186,9 +168,15 @@ module wade(
 					base_thickness/2+block_bevel_r,wade_block_depth+base_extra_depth]);				
 				translate([-block_bevel_r+wade_body_offset,block_bevel_r+base_thickness/2])
 				cylinder(r=block_bevel_r,h=wade_block_depth+base_extra_depth,$fn=60);
-				translate([wade_block_width+block_bevel_r+wade_body_offset,
-					block_bevel_r+base_thickness/2])
-				cylinder(r=block_bevel_r,h=wade_block_depth+base_extra_depth,$fn=60);
+				translate([wade_block_width+block_bevel_r-3+wade_body_offset,
+					block_bevel_r-3+base_thickness/2])
+				cylinder(r=block_bevel_r-3,h=wade_block_depth+base_extra_depth,$fn=60);
+				translate([wade_block_width+wade_body_offset,
+					block_bevel_r-3+base_thickness/2])
+				cube([2*(block_bevel_r-3),2*(block_bevel_r-3),wade_block_depth+base_extra_depth]);
+				translate([wade_block_width+block_bevel_r-3+wade_body_offset,base_thickness/2])
+				cube([2*(block_bevel_r-3),2*(block_bevel_r-3),wade_block_depth+base_extra_depth]);
+				
 			}
 			// "Domecek" pro idler
 			translate([wade_body_offset,0,0]) difference(){
@@ -198,11 +186,10 @@ module wade(
 				translate([-18,12,-0.1]) rotate([0,0,45]) cube([10,10,30]);
 			}
 			
-			// The base.
+			//The base.
 			translate([-base_leadout+10,-base_thickness/2,0])
 			cube([base_length-20,base_thickness,wade_block_depth+base_extra_depth]);
 			//Base aligement helper
-			//-24.5+64+4,-0.5,3
 			translate([-base_leadout+26,-0.5+4,wade_block_depth+base_extra_depth])
 			cube([20,3.4,layer_thickness*5]);
 			
@@ -210,36 +197,34 @@ module wade(
 			motor_mount ();
 		}
 
-		// Drzak trysky
-		translate([-30,15,3]) {
-	 
-		  // Vyrez pro trysku	  
-		  translate([0,-6.5,tloustka_krytky/2+16.4/2 + 0.8]) rotate([-90,0,0]) groovemount_holes (0);
+		// Otvory pro srouby na pridelani trysky
+		translate([large_wheel_translation[0]-filament_feed_hole_offset + 13,10,wade_block_depth/2]) rotate([-90,0,0]) 
+		  nut_insert_hole();
+		translate([large_wheel_translation[0]-filament_feed_hole_offset - 13,8,wade_block_depth/2]) rotate([-90,180,0]) 
+		  nut_hole(); 
+
+		translate([large_wheel_translation[0]-filament_feed_hole_offset + 12,0,8])
+		rotate([0,180,0]) 
+		  cylinder(r=1.3,h=40,$fn=16,center=false);
+
+		translate([large_wheel_translation[0]-filament_feed_hole_offset - 10,0,8]) 
+		rotate([0,180,0]) 
+		  cylinder(r=1.3,h=40,$fn=16,center=false);
 		  
-		  // Otvory pro srouby
-		  translate([11,0,-tloustka_krytky/2 + 2 + layer_thickness]) cylinder(r=1.6,h=10,$fn=20);
-		  translate([-11,0,-tloustka_krytky/2 + 2 + layer_thickness]) cylinder(r=1.6,h=10,$fn=20);
-		  
-		  translate([-11,0,-tloustka_krytky/2 + 2]) rotate([180,0,0]) cylinder(r=3,h=4,$fn=20);
-		  translate([11,0,-tloustka_krytky/2 + 2]) rotate([180,0,0]) cylinder(r=3,h=4,$fn=20);
-		  
-		  translate([-11-6,-3,-tloustka_krytky/2 + 2 -6]) cube([6,6,6]);
-		  translate([11,-3,-tloustka_krytky/2 + 2 -6]) cube([6,6,6]);
-		}
 		
 		block_holes(mounting_holes=mounting_holes);
 		motor_mount_holes ();
 
 		translate([large_wheel_translation[0]-filament_feed_hole_offset,
-			-base_thickness/2-2,wade_block_depth/2])
+			-base_thickness/2,wade_block_depth/2])
 		rotate([-90,0,0])
 		{
 			if (in_mask (hotend_mount,j_head_groovemount))
-				groovemount_holes (1, 16.4, 5.4, 12.2, 4.6);
+				groovemount_holes (16.2);
 			if (in_mask (hotend_mount,3draty_groovemount))
-				groovemount_holes (1, 16.2, 5.2, 12.2, 4.6);
+				groovemount_holes (16.2);
 			if (in_mask (hotend_mount,rebel_groovemount))
-				groovemount_holes (1, 16.6, 5.4, 12.4, 4.6);	
+				groovemount_holes (16.4);	
 		}
 	}
 }
@@ -249,7 +234,7 @@ function in_mask(mask,value)=(mask%(value*2))>(value-1);
 module block_holes(mounting_holes=default_mounting_holes)
 {
 echo("bhmh", mounting_holes)
-	// Round off the top of the block. 
+	//Round off the top of the block. 
 	translate([0,wade_block_height-block_bevel_r,-1])
 	render()
 	difference()
@@ -260,7 +245,7 @@ echo("bhmh", mounting_holes)
 		cylinder(r=block_bevel_r,h=wade_block_depth+2,$fn=40);
 	}
 	
-	// Carriage mountig holes
+	//carriage mountig holes
 	translate([-24.5+64+4,-0.5,3]) {
 		translate([-55,0,0]) {
 			translate([0,0,(wade_block_depth+base_extra_depth)/2+6+layer_thickness]) cylinder(r=m3_diameter/2, h=wade_block_depth+base_extra_depth, center=true, $fn=20);
@@ -495,46 +480,22 @@ function rotated(a)=[cos(a),sin(a),0];
 //========================================================
 // Modules for defining holes for hotend mounts:
 // These assume the extruder is verical with the bottom filament exit hole at [0,0,0].
+module nut_insert_hole(m3_nut_diameter=6.5){
+	cylinder(r=m3_nut_diameter/2,h=3,$fn=6,center=true);
+	translate([0,0,-10]) cylinder(r=1.5,h=40,$fn=16,center=true);
+    translate([5,0,0]) cube([10,m3_nut_diameter*cos(30),3],center=true);
+}
 
-module groovemount_holes (mount_holes,
-						  extruder_recess_big_d=16.2, 
-						  extruder_recess_big_h=5.4, 
-						  extruder_recess_small_d=12.2,
-						  extruder_recess_small_h=5.2)
+module nut_hole(m3_nut_diameter=6.5){
+	cylinder(r=m3_nut_diameter/2,h=10,$fn=6,center=true);
+	translate([0,0,-15]) cylinder(r=1.5,h=40,$fn=16,center=true);
+}
+
+module groovemount_holes (extruder_recess_d=16.2)
 {	
-	// Vyrez pro trysku
-	translate([0,0,11])
-	rotate([180,0,0])
-	{
-	  translate([0,-0.1,0]){
-	    cylinder(r=extruder_recess_big_d/2,h=extruder_recess_big_h,$fn=100);
-	    translate([-extruder_recess_big_d/2,0,0]) 
-	    cube([extruder_recess_big_d,20,extruder_recess_big_h]);
-	  	  
-		translate([0,0,extruder_recess_big_h])
-	    cylinder(r=extruder_recess_small_d/2,h=extruder_recess_small_h,$fn=64);
-	
-	    translate([-extruder_recess_small_d/2,0,extruder_recess_big_h])
-	    cube([extruder_recess_small_d,20,extruder_recess_small_h]);
-	  }
-	  
-	  translate([0,0,extruder_recess_big_h+extruder_recess_small_h])
-	  cylinder(r=extruder_recess_big_d/2,h=extruder_recess_big_h,$fn=64);
-	  
-	  translate([-extruder_recess_big_d/2,0,extruder_recess_big_h+extruder_recess_small_h])
-	  cube([extruder_recess_big_d,20,extruder_recess_big_h]);
-	  
-	  if(mount_holes){
-	    translate([-28/2,extruder_recess_big_d/2,0])
-	    cube([28,20,base_thickness-2.9]);
-	
-		translate([11,-extruder_recess_big_d/2,(base_thickness - 3)/2])
-		rotate([-90,0,0]) 
-		cylinder(r=1.3,h=60,$fn=16,center=true);
+	extruder_recess_h=5;
 
-		translate([-11,-extruder_recess_big_d/2,(base_thickness - 3)/2]) 
-		rotate([-90,0,0]) 
-		cylinder(r=1.3,h=60,$fn=16,center=true);	
-	  }
-	}
+	// Recess in base
+	translate([0,0,-1])
+	cylinder(r=extruder_recess_d/2,h=extruder_recess_h+1,$fn=64);
 }
