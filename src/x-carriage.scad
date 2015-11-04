@@ -27,9 +27,6 @@ module x_carriage_base(){
  translate([-part_width/2,17,0]) cube([part_width,21,17]);
  // Zakladna
  translate([-part_width/2,-12,0]) cube([part_width,69,7+1.5]);
- // Zobacek pro pridelani extruderu
- translate([-25,x_rod_distance+12,0]) cube([50,2,2.5]);
-
 }
 
 module x_carriage_beltcut(){
@@ -59,14 +56,10 @@ module x_carriage_holes(){
   translate([-40,x_rod_distance+12-30,-0.1]) cube([80,3.7,2.6]);
   // Extruder mounting holes
   translate([0,x_rod_distance+12-34,-0.1]){
-	translate([5,0,0])cylinder(r=1.7, h=20, $fn=32);
-	translate([5,0,10])rotate([0,0,30]) cylinder(r=3.3, h=20, $fn=6);
 	translate([20,0,0])cylinder(r=1.7, h=20, $fn=32);
 	translate([20,0,10]) rotate([0,0,30]) cylinder(r=3.3, h=20, $fn=6);
   }
   translate([0,x_rod_distance+12-34,-0.1]){
-	translate([-5,0,0])cylinder(r=1.7, h=20, $fn=32);
-	translate([-5,0,10]) rotate([0,0,30]) cylinder(r=3.3, h=20, $fn=6);
 	translate([-20,0,0])cylinder(r=1.7, h=20, $fn=32);
 	translate([-20,0,10]) rotate([0,0,30]) cylinder(r=3.3, h=20, $fn=6);
   }
