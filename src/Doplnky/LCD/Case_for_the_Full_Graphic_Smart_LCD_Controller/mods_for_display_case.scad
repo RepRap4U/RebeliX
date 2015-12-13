@@ -198,7 +198,7 @@ module button()
 
 // Pridelani do profilu 
 module base(){
-	translate([0,0,0]) cube([7.2+1.8,delka_zobacku,10]);
+	translate([0,0,0]) cube([7.2+1.8+3,delka_zobacku,10]);
 
 }
 
@@ -206,7 +206,7 @@ module cuts(){
 	translate([0,-0.1,10]) mirror([0,0,1]) rotate([0,40,0]) cube([2.2,delka_zobacku+1,6]);
 	translate([-0.1,-0.1,10 - 1]) cube([2,delka_zobacku+1,3]);
 	translate([-0.1,-0.1,1.2]) rotate([0,135,0]) cube([2,delka_zobacku+1,3]);
-	translate([7.2+1.8,-0.1,10-1.5]) rotate([0,-40,0]) cube([2,delka_zobacku+1,6]);
+	translate([7.2+1.8+3,-0.1,10-1.5]) rotate([0,-40,0]) cube([2,delka_zobacku+1,6]);
 }
 
 module drazka(){
@@ -223,6 +223,6 @@ difference(){
 // Render
 //----------------------------------------------------------------------------/
 case_front();
-//translate([108.6/2 - delka_zobacku/2,7.4+1.8,0.14]) rotate([0,0,-90]) drazka();
+//translate([108.6/2 - delka_zobacku/2,7.4+1.8+3,0.14]) rotate([0,0,-90]) drazka();
 //rotate([180,0,0]) translate([0,0,-11]) case_rear();
 //translate([100,0,10]) button();
