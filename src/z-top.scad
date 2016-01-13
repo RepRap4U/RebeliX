@@ -17,10 +17,10 @@ base_offset = 11;
 motor_offset = 0;
 
 module z_top_base(){
- translate([3.5+4.35+14.45-15+motor_offset,0,0]) cube([30,8,height]);
+ translate([motor_offset,0,0]) cube([37.3,8,height]);
  translate([0,0,0]) cube([2*7.65,32,12]);
  translate([18,0,0]) rotate([0,0,45]) cube([10,20,8]);
- translate([0,0,0]) cube([30,8,6+20]);
+ translate([0,0,0]) cube([30,8,12]);
  translate([3.5+4.35+14.45-4+motor_offset,-2,31]) cube([8,3,height-31]);
  translate([3.5+4.35+14.45-15+motor_offset,-2,15-4]) cube([30,3,8]); 
 }
@@ -44,7 +44,7 @@ module z_top_cuts(){
  translate([0,32,12-0.6]) rotate([45,0,0]) cube([15,32,10]);    
     
  translate([-1,-4,-0.1]) rotate([0,0,45]) cube([5,5,height]); 
- translate([3.5+4.35+14.45-15+motor_offset,-0.1,6+20]) rotate([0,-135,0]) cube([10,10,30]);   
+ translate([motor_offset,9,12]) rotate([0,-12,180]) cube([10,10,60]);   
 }
 
 module z_top_holes(){
