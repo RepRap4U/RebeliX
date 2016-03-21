@@ -25,6 +25,9 @@ space = 1;
 M6_head_diameter = 10.6+space;
 //M6_head_diameter = 12+space;
 
+// Prumer M6 sroubu
+M6_dia = 6.3;
+
 // Vyska hlavy M6 sroubu (dulezite pro zapusteni hlavy sroubu do plastu) [mm]
 M6_head_height = 3.6;
 //M6_head_height = 4.5;
