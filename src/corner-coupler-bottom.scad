@@ -12,13 +12,13 @@ include <../configuration.scad>
 rubber_feet_d = 20;
 
 module drazka(){
-	translate([-30/2+4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([-30/2+8,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([-30/2+6,0,0]) cube([4,8,coupler_thickness+1.5],center=true);
+translate([-30/2+4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+	translate([-M6_dia/2-4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+	translate([-M6_dia/4 - 7.5,0,0]) cube([7 - M6_dia/2,8,coupler_thickness+1.5],center=true);
 	
 	translate([30/2-4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([30/2-8,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([30/2-6,0,0]) cube([4,8,coupler_thickness+1.5],center=true);
+	translate([M6_dia/2+4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+	translate([M6_dia/4 + 7.5,0,0]) cube([7 - M6_dia/2,8,coupler_thickness+1.5],center=true);
 }
 
 module corner_coupler_bottom(){
@@ -34,8 +34,8 @@ module corner_coupler_bottom(){
 	}
 		
 	// Otvory pro srouby
-	translate([15,30/2,0])cylinder(h=20,r=3.1,$fn=32,center=true);
-	translate([45,30/2,0])cylinder(h=20,r=3.1,$fn=32,center=true);
+	translate([15,30/2,0])cylinder(h=20,r=M6_dia/2,$fn=32,center=true);
+	translate([45,30/2,0])cylinder(h=20,r=M6_dia/2,$fn=32,center=true);
 	translate([15,15-9-rubber_feet_d/2,0]) cylinder(r=1.5,h=20,$fn=16,center=true);
 		
 	// Zalomene hrany
