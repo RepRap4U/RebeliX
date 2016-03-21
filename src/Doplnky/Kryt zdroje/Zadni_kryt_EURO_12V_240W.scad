@@ -6,7 +6,7 @@
 // http://www.reprap4u.cz
 
 include <../../../configuration.scad>
-use <text_RebeliX.scad>
+use <../../inc/text_RebeliX.scad>
 
 sirka = 98.5+0.9;
 sirka_vnitrni = 90.7;
