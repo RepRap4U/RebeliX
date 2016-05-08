@@ -11,26 +11,32 @@ include <../configuration.scad>
 // Prumer pristrojove gumove nozicky
 rubber_feet_d = 20;
 
-module drazka(){
-translate([-30/2+4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([-M6_dia/2-4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([-M6_dia/4 - 7.5,0,0]) cube([7 - M6_dia/2,8,coupler_thickness+1.5],center=true);
+module drazka()
+{
+  distance = M6_dia >= profile_nut_width ? M6_dia : profile_nut_width;
+  
+  translate([-30/2+4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([-distance/2-4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([-distance/4 - 7.5,0,0]) cube([7 - distance/2,8,coupler_thickness+1.5],center=true);
 	
-	translate([30/2-4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([M6_dia/2+4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([M6_dia/4 + 7.5,0,0]) cube([7 - M6_dia/2,8,coupler_thickness+1.5],center=true);
+  translate([30/2-4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([distance/2+4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([distance/4 + 7.5,0,0]) cube([7 - distance/2,8,coupler_thickness+1.5],center=true);
 }
 
-module corner_coupler_bottom(){
-  difference(){
-	union(){
-		cube([60,30,coupler_thickness]);
-		translate([15,30/2,(coupler_thickness+1.5)/2]) rotate([0,0,90]) drazka();
-		translate([45,30/2,(coupler_thickness+1.5)/2]) drazka();
-		translate([15,15-9-rubber_feet_d/2,0]) cylinder(r=rubber_feet_d/2,h=coupler_thickness,$fn=64);
-		translate([15,15-9,coupler_thickness/2]) cube([rubber_feet_d,rubber_feet_d,coupler_thickness],center=true);
-		translate([15,15-9-rubber_feet_d/2,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32);
-		translate([15-4,15-9-rubber_feet_d/2,0]) cube([8,rubber_feet_d/2,coupler_thickness+1.5]);
+module corner_coupler_bottom()
+{
+  difference()
+  {
+	union()
+	{
+	  cube([60,30,coupler_thickness]);
+	  translate([15,30/2,(coupler_thickness+1.5)/2]) rotate([0,0,90]) drazka();
+	  translate([45,30/2,(coupler_thickness+1.5)/2]) drazka();
+	  translate([15,15-9-rubber_feet_d/2,0]) cylinder(r=rubber_feet_d/2,h=coupler_thickness,$fn=64);
+	  translate([15,15-9,coupler_thickness/2]) cube([rubber_feet_d,rubber_feet_d,coupler_thickness],center=true);
+	  translate([15,15-9-rubber_feet_d/2,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32);
+	  translate([15-4,15-9-rubber_feet_d/2,0]) cube([8,rubber_feet_d/2,coupler_thickness+1.5]);
 	}
 		
 	// Otvory pro srouby

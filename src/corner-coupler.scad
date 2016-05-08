@@ -8,22 +8,28 @@
 
 include <../configuration.scad>
 
-module drazka(){
-	translate([-30/2+4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([-M6_dia/2-4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([-M6_dia/4 - 7.5,0,0]) cube([7 - M6_dia/2,8,coupler_thickness+1.5],center=true);
+module drazka()
+{
+  distance = M6_dia >= profile_nut_width ? M6_dia : profile_nut_width;
+  
+  translate([-30/2+4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([-distance/2-4,0,0]) cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([-distance/4 - 7.5,0,0]) cube([7 - distance/2,8,coupler_thickness+1.5],center=true);
 	
-	translate([30/2-4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([M6_dia/2+4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
-	translate([M6_dia/4 + 7.5,0,0]) cube([7 - M6_dia/2,8,coupler_thickness+1.5],center=true);
+  translate([30/2-4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([distance/2+4,0,0])cylinder(r=4,h=coupler_thickness+1.5,$fn=32,center=true);
+  translate([distance/4 + 7.5,0,0]) cube([7 - distance/2,8,coupler_thickness+1.5],center=true);
 }
 
-module corner_coupler(){
-  difference(){
-	union(){
-		cube([60,30,coupler_thickness]);
-		translate([15,30/2,(coupler_thickness+1.5)/2]) rotate([0,0,90]) drazka();
-		translate([45,30/2,(coupler_thickness+1.5)/2]) drazka();
+module corner_coupler()
+{
+  difference()
+  {
+	union()
+	{
+	  cube([60,30,coupler_thickness]);
+	  translate([15,30/2,(coupler_thickness+1.5)/2]) rotate([0,0,90]) drazka();
+	  translate([45,30/2,(coupler_thickness+1.5)/2]) drazka();
 	}
 		
 	// Otvory pro srouby

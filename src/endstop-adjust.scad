@@ -25,16 +25,34 @@ module endstop_base(delka_ramen,vyska,sirka_steny){
 module endstop_cuts(delka,vyska,sirka_steny){
 	// Otvor pro M6 sroub
 	translate([15+delka_ramene,M6_head_height,2+M6_head_diameter/2]) rotate([90,0,0]) cylinder(r=M6_head_diameter/2,h=10,$fn=30);
-	translate([15+delka_ramene,0,2+M6_head_diameter/2]) rotate([-90,0,0]) cylinder(r=3.1,h=20,$fn=30);
+	translate([15+delka_ramene,0,2+M6_head_diameter/2]) rotate([-90,0,0]) cylinder(r=M6_dia/2,h=20,$fn=30);
 	// Otvor pro M3 sroub
 	translate([0,y_offset,0]) rotate([0,0,0]) cylinder(r=1.6,h=20,$fn=16,center=true);
 	translate([0,y_offset,vyska-2.4]) cylinder(h = 2.5, r=3.3, $fn=6);		
 	// Seriznuti rohu
 	translate([delka_ramene,-0.1,vyska]) rotate([0,-55,0]) cube([20,10,10]);
 	translate([30+delka_ramene,-0.1,vyska]) rotate([0,-35,0]) cube([10,10,20]);	
+	
+	// Vyrez pro profilovou matku
+	translate([15+delka_ramene,sirka_steny + 3,2+M6_head_diameter/2]) cube([10,6,profile_nut_width],center=true);
+	
+	// Seriznuti pro snazsi tisk
+	if(profile_nut_width != 0)
+	{
+	  translate([delka_ramene,sirka_steny,2+M6_head_diameter/2 + profile_nut_width/2]) rotate([-40,0,0]) cube([30,3,8]);
+	}
 }
 
-mirror([0,1,0]) difference(){
+
+module endstop_adjust()
+{
+  difference()
+  {
 	endstop_base(34,7,8);
 	endstop_cuts(15,7,8);
+  }
 }
+
+//mirror([0,1,0]) endstop_adjust();  
+
+endstop_adjust();  

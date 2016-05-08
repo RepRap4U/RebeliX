@@ -30,9 +30,12 @@ module z_top_cuts(){
  translate([3.5+4.35-0.2+1/2,8+16,layer_height]) rotate([0,0,90]) cube([10,1,10+7]); 
  
  // Seriznuti pro snazsi tisk
- translate([3.5+4.35+14.45-15+motor_offset,0,15-4]) rotate([160,0,0]) cube([30,3,8]);
- translate([3.5+4.35+14.45-15+motor_offset,0,31]) rotate([160,0,0]) cube([30,3,8]); 
-    
+ translate([3.5+4.35+14.45-15+motor_offset,0,15-4]) rotate([180 - 40,0,0]) cube([30,3,8]);
+ translate([3.5+4.35+14.45-15+motor_offset,0,31]) rotate([180 - 40,0,0]) cube([30,3,8]);
+ if(profile_nut_width != 0)
+ {
+   translate([3.5+4.35+14.45-15+motor_offset,0,height-10+profile_nut_width/2]) rotate([180 - 40,0,0]) cube([30,3,8]); 
+ }   
  // Seriznute hrany
  translate([3.5+4.35+14.45-15+motor_offset,-0.1,height-3]) rotate([0,-45,0]) cube([10,10,10]);
  translate([3.5+4.35+14.45+15+motor_offset,-0.1,height-3]) rotate([0,-45,0]) cube([10,10,10]);
@@ -44,15 +47,19 @@ module z_top_cuts(){
  translate([0,32,12-0.6]) rotate([45,0,0]) cube([15,32,10]);    
     
  translate([-1,-4,-0.1]) rotate([0,0,45]) cube([5,5,height]); 
- translate([motor_offset,9,12]) rotate([0,-12,180]) cube([10,10,60]);   
+ translate([motor_offset,9,12]) rotate([0,-12,180]) cube([10,10,60]);  
+ 
+ // Vyrez pro profilovou matku
+ translate([3.5+4.35+14.45+motor_offset,-3,15]) cube([profile_nut_width,6,10],center=true);
+ translate([3.5+4.35+14.45+motor_offset,-3,height-10]) cube([10,6,profile_nut_width],center=true);
 }
 
 module z_top_holes(){
  // Otvory pro prisroubovani do hlinikoveho profilu
  translate([3.5+4.35+14.45+motor_offset,8-M6_head_height,15]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
  translate([3.5+4.35+14.45+motor_offset,8-M6_head_height,height-10]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);		
- translate([3.5+4.35+14.45+motor_offset,-3,15]) rotate([-90,0,0]) cylinder(r = 3.05, h = 10, $fn = 30);
- translate([3.5+4.35+14.45+motor_offset,-3,height-10]) rotate([-90,0,0]) cylinder(r = 3.05, h = 10, $fn = 30);
+ translate([3.5+4.35+14.45+motor_offset,-3,15]) rotate([-90,0,0]) cylinder(r = M6_dia/2, h = 10, $fn = 30);
+ translate([3.5+4.35+14.45+motor_offset,-3,height-10]) rotate([-90,0,0]) cylinder(r = M6_dia/2, h = 10, $fn = 30);
  // Otvor pro hlazenou tyc 8mm
  translate([3.5+4.35-0.2,21.3+base_offset-12-0.15,-0.1]) rotate([0,0,0]) cylinder(r = rod_8mm_d/2, h = 40, $fn = 50,center=true);
 

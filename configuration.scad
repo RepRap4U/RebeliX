@@ -36,6 +36,10 @@ M6_head_height = 3.6;
 // M6x12
 M6_lenght = 12;
 
+// Sirka matky do profilu (pokud neni pouzita, tak 0)
+//profile_nut_width = 9.5;
+profile_nut_width = 0;
+
 /*=================== Nastaveni dilu =========================*/
 
 // Posun Z zakladny

@@ -39,12 +39,21 @@ module y_motor_cuts(){
 	// Vyrez pro vedeni kabelu od motoru Z (dolni vedeni)
 	translate([0,5,-0.1]) cylinder(r=3.5,h=motor_length+motor_base_thickness+1,$fn=20);
 	translate([3.5,5,-0.1]) rotate([0,0,180]) cube([10,10,motor_length+motor_base_thickness+1]);
+	
+	// Vyrez pro profilovou matku 
+    translate([-3,15,16]) cube([6,10,profile_nut_width],center=true);
+  
+	// Seriznuti pro snazsi tisk
+	 if(profile_nut_width != 0)
+	{
+	  translate([0,0,16 + profile_nut_width/2]) rotate([0,180 + 40,0]) cube([3,30,8]);
+	}
 }	
 
 module y_motor_holes(){
 	// Otvor pro prisroubovani do hlinikoveho profilu
 	translate([base_thickness-M6_head_height,15,16]) rotate([0,90,0]) cylinder(r = M6_head_diameter/2, h = 10, $fn = 30);
-	translate([-3,15,16]) rotate([0,90,0]) cylinder(r = 3.05, h = 10, $fn = 30);
+	translate([-3,15,16]) rotate([0,90,0]) cylinder(r = M6_dia/2, h = 10, $fn = 30);
 
 	// Otvory pro motor
 	translate([base_thickness+5.65,4+5.65,-0.1]){

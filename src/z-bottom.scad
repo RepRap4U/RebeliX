@@ -44,6 +44,15 @@ module z_bottom_cuts(){
  translate([5+21.3-5,5,height-9-4.5]) cube([10,20,30]); 
  translate([5+21.3,5,height+1]) rotate([0,45,0]) cube([5,30,5]); 
  translate([5+21.3-7,5,height+1]) rotate([0,45,0]) cube([5,30,5]);
+
+ // Vyrez pro profilovou matku 
+ translate([2.5+21.3+motor_offset,-3,(height-6)/2]) cube([10,6,profile_nut_width],center=true);
+ 
+ // Seriznuti pro snazsi tisk
+ if(profile_nut_width != 0)
+ {
+   translate([2.5+21.3+motor_offset - 30/2,0,(height-6)/2 + profile_nut_width/2]) rotate([180-40,0,0]) cube([30,3,8]); 
+ }
 }
 
 module z_bottom_holes(){
@@ -58,7 +67,7 @@ module z_bottom_holes(){
  }
  // Otvor pro prisroubovani do hlinikoveho profilu
  translate([2.5+21.3+motor_offset,z_base_offset-M6_head_height-2.5,(height-6)/2]) rotate([-90,0,0]) cylinder(r = M6_head_diameter/2, h = 20, $fn = 30);
- translate([2.5+21.3+motor_offset,-3,(height-6)/2]) rotate([-90,0,0]) cylinder(r = 3.05, h = 20, $fn = 30);
+ translate([2.5+21.3+motor_offset,-3,(height-6)/2]) rotate([-90,0,0]) cylinder(r = M6_dia/2, h = 20, $fn = 30);
 }
 
 // Cela soucastka

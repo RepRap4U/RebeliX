@@ -13,7 +13,8 @@ PCB_tloustka = 1.9;
 holder_offset = 10;
 offset_zakladny = 2;
 
-module holder_base(vyska,sirka,delka,pozice){
+module holder_base(vyska,sirka,delka,pozice)
+{
 	offset_zakladny = pozice == 1 ? offset_zakladny : -offset_zakladny;
 
 	// Drzak Arduina
@@ -36,10 +37,12 @@ module top_holder_cuts(vyska,delka,sirka,pozice){
 	translate([box_sirka/2 + offset_zakladny,box_vyska-8-10-5.5-2.5,-0.1]) rotate([0,0,180]) cube([64,17+5,2*15], center=true);
 	// Otvor pro M6 sroub
 	translate([sirka/2+offset_zakladny,delka-6+M6_head_height+holder_offset-2.5,vyska+M6_head_diameter/2]) rotate([90,0,0]) cylinder(r=M6_head_diameter/2,h=30,$fn=64);
-	translate([sirka/2+offset_zakladny,delka,vyska+M6_head_diameter/2]) rotate([90,0,0]) cylinder(r=3.1,h=50,$fn=30,center=true);
+	translate([sirka/2+offset_zakladny,delka,vyska+M6_head_diameter/2]) rotate([90,0,0]) cylinder(r=M6_dia/2,h=50,$fn=30,center=true);
 	// Vyrez vrchniho dilu
-	if (pozice == 1) {	
-		difference() {
+	if (pozice == 1) 
+	{	
+		difference() 
+		{
 		  translate([9,-0.1,-0.1]) cube([box_sirka-18,box_vyska-15,vyska+1]);
 		  translate([0,9,0]) cube([box_sirka,11,1.5]);
 		}
@@ -47,10 +50,12 @@ module top_holder_cuts(vyska,delka,sirka,pozice){
 		translate([-2,13.5,vyska/2 - 3.5/2]) zip_paska(7);
 		translate([-2,30.5,vyska/2 - 3.5/2]) zip_paska(7);
 		translate([13,box_vyska+1,vyska/2 - 3.5/2]) zip_paska(7);
+		
 		//Vyrez pro kabely
 		translate([-8,13.5,-0.1]) cylinder(r=9,h=10,$fn=32);
 		translate([-8,30.5,-0.1]) cylinder(r=9,h=10,$fn=32);
 		translate([13,box_vyska+5,-0.1]) cylinder(r=6.5,h=10,$fn=32);
+		
 		// Vyrez pro kryci mrizku
 		translate([box_sirka/2,3.5,vyska/2]) cube([box_sirka-4,2.8,vyska+0.1],center=true);
 		translate([box_sirka/2,3.5-2.8,vyska/2]) cube([box_sirka+1,2.9,vyska+0.1],center=true);
@@ -60,20 +65,22 @@ module top_holder_cuts(vyska,delka,sirka,pozice){
 		translate([box_sirka/2 + 66/2 - 3.5,3.5,vyska/2]) rotate([90,0,0]) cylinder(r=1.3,h=15,$fn=16,center=true);
 	}
 	// Vyrez spodni dil
-	if (pozice == 0) {	
-		difference(){
-	      translate([8,-0.1,-0.1]) cube([box_sirka-16,box_vyska-7.2+PCB_tloustka,30]);
-		  translate([0,8,0]) cube([box_sirka,8,1.5]);
-	      translate([sirka/2+offset_zakladny,box_vyska,-0.1]) rotate([0,0,180]) cube([19,24,20], center=true);
-		}
-	// Vyrez pro kryci mrizku
-	translate([box_sirka/2,3.5,0]) cube([box_sirka-4,2.8,vyska+2],center=true);
-	// Zip pasky
-	translate([box_sirka-13,box_vyska+2.5,vyska/2 - 3.5/2]) zip_paska(7);
-	translate([sirka+2,13.5,vyska/2 - 3.5/2]) zip_paska(7);
-	//Vyrez pro kabely
-	translate([box_sirka-13,box_vyska+5.5,0]) cylinder(r=6.5,h=30,$fn=32,center=true);
-	translate([sirka+8,13.5,-0.1]) cylinder(r=9,h=10,$fn=32);
+	if (pozice == 0) 
+	{	
+	  difference()
+	  {
+	    translate([8,-0.1,-0.1]) cube([box_sirka-16,box_vyska-7.2+PCB_tloustka,30]);
+		translate([0,8,0]) cube([box_sirka,8,1.5]);
+	    translate([sirka/2+offset_zakladny,box_vyska,-0.1]) rotate([0,0,180]) cube([19,24,20], center=true);
+	  }
+	  // Vyrez pro kryci mrizku
+	  translate([box_sirka/2,3.5,0]) cube([box_sirka-4,2.8,vyska+2],center=true);
+	  // Zip pasky
+	  translate([box_sirka-13,box_vyska+2.5,vyska/2 - 3.5/2]) zip_paska(7);
+	  translate([sirka+2,13.5,vyska/2 - 3.5/2]) zip_paska(7);
+	  //Vyrez pro kabely
+	  translate([box_sirka-13,box_vyska+5.5,0]) cylinder(r=6.5,h=30,$fn=32,center=true);
+	  translate([sirka+8,13.5,-0.1]) cylinder(r=9,h=10,$fn=32);
 	}
 
 	// Uspora plastu
@@ -88,23 +95,45 @@ module top_holder_cuts(vyska,delka,sirka,pozice){
 	translate([box_sirka/2 - 25,box_vyska,-0.1]) rotate([0,0,110]) cube([15,40,15]);
 	translate([box_sirka/2 + 25,box_vyska,-0.1]) rotate([0,0,-20]) cube([40,15,15]);
 	
+	// Vyrez pro profilovou matku 
+    translate([sirka/2+offset_zakladny,delka + holder_offset + 3,vyska+M6_head_diameter/2]) cube([10,6,profile_nut_width],center=true);
+
+	// Seriznuti pro snazsi tisk
+	 if(profile_nut_width != 0)
+	{
+	  translate([sirka/2+offset_zakladny - 15,delka + holder_offset,vyska+M6_head_diameter/2+profile_nut_width/2]) rotate([-40,0,0]) cube([30,3,8]);
+	}	
 }
 
-module zip_paska(r_vnejsi){
-  difference(){
+module zip_paska(r_vnejsi)
+{
+  difference()
+  {
     cylinder(r=r_vnejsi,h=3.5,$fn=32);
     cylinder(r=r_vnejsi-2,h=3.5,$fn=32);
   }
 }
 
 // Spodek
-translate([0,0,0]) difference(){
+module RAMPS_holder_bottom()
+{
+  difference()
+  {
 	holder_base(7,box_sirka,box_vyska,0);
 	top_holder_cuts(7,box_vyska,box_sirka,0);
+  }
 }
 
 // Vrsek
-translate([0,box_vyska+holder_offset - 5,0]) difference(){
+module RAMPS_holder_top()
+{
+  difference()
+  {
 	holder_base(7,box_sirka,box_vyska,1);
 	top_holder_cuts(7,box_vyska,box_sirka,1);
+  }
 }
+
+RAMPS_holder_bottom();
+translate([0,box_vyska+holder_offset - 5,0]) 
+RAMPS_holder_top();
