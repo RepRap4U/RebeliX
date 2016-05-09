@@ -27,5 +27,5 @@ width = 3*extrusion_width;
 layer_height = 0.3;
 
 // Prumer teflonove trubicky (2 = bez teflonove trubicky)
-teflon_tube_diameter = 2;
-//teflon_tube_diameter = 4;
+//teflon_tube_diameter = 2;
+teflon_tube_diameter = 4;
