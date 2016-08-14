@@ -57,7 +57,7 @@ module groovemount_holes (extruder_recess_big_d=16.4,
 	cylinder(r=extruder_recess_big_d/2,h=extruder_recess_big_h,$fn=64);
 	  
   // Otvor pro filament
-  translate([0,0,0]) cylinder(r=teflon_tube_diameter,h=30,$fn=16,center=true);  
+  translate([0,0,0]) cylinder(r=teflon_tube_diameter/2,h=30,$fn=16,center=true);  
 	 
   // Vyrez pro zasunuti trysky
   if(mount)
