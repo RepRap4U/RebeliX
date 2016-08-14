@@ -107,14 +107,14 @@ module nema17_mount()
 				cylinder(r = edge_radius, h = height + 2 * epsilon, $fn = 128, center = true);
 			}
 			// mount for extruder	
-			translate([-nema17_width/2 + 5 - extruder_offset, nema17_width/2 + 6, 0])
-				cube([10, 12, height ], center = true);	
+			translate([-nema17_width/2 + 5 - extruder_offset, nema17_width/2 + 6, 1])
+				cube([10, 12, height + 2], center = true);	
 			translate([-nema17_width/2 + 5 - extruder_offset, 4 ,0])
 				cube([10, nema17_width, height], center = true);
 			translate([-nema17_width/2, 4/2, 0])
 				cube([2*extruder_offset, nema17_width - 4, height], center = true);	
-		}	
-	
+		}
+		
 		// center hole
 		translate([0, 0, -epsilon]	)
 			cylinder(r = 11.25 + extra_radius, h = base_height + 2 * epsilon, $fn = 32);
@@ -135,6 +135,10 @@ module nema17_mount()
 		translate([-nema17_width/2 + 5 - extruder_offset,nema17_width/2 - 29.3,9/2]) rotate([0,-90,0]) nut_hole();	
 		translate([-nema17_width/2 + 5 - extruder_offset,nema17_width/2 + 3.5 + 4,9 + corner_radius - 6]) rotate([0,-90,0]) nut_hole();
 
+		translate([-nema17_width/2 + 5 - extruder_offset, nema17_width/2, height + 2])
+		rotate([0,90,0])
+			cylinder(r=2,h=12,$fn=32,center=true);
+		
 		// holes for cables
 		translate([-nema17_width/2 - extruder_offset, 4 ,10]) 
 			cylinder(r=extruder_offset,h=30,$fn=32,center=true);
