@@ -67,7 +67,7 @@ module nozzles_fan_cuts()
 }
 
 module HE()
-{
+{ 
   difference()
   {
     union()
@@ -78,8 +78,8 @@ module HE()
 	}
 	difference()
 	{
-	  translate([0,0,-HE_l/2 + 3.5/2 + 9.4 + extrusion_width]) cylinder(r=HE_d/2 + 1,h=3.5,$fn=64,center=true);
-	  translate([0,0,-HE_l/2 + 3.5/2 + 9.4 + extrusion_width]) cylinder(r=HE_d/2 - 1,h=4,$fn=64,center=true);
+	  translate([0,0,-HE_l/2 + 3.5/2 + pocet_zeber * 2 - 0.2]) cylinder(r=HE_d/2 + 1,h=3.5,$fn=64,center=true);
+	  translate([0,0,-HE_l/2 + 3.5/2  + pocet_zeber * 2 - 0.2]) cylinder(r=HE_d/2 - 1,h=4,$fn=64,center=true);
 	}
   }	
 }

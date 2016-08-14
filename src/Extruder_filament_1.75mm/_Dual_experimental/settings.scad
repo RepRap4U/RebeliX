@@ -14,6 +14,11 @@ HE_d = 19.5;
 // Delka chladice
 HE_l = 25;
 
+// Pocet zeber chladice - mereno od spodni casti
+// RebelMOD v3.0 - JRC (komplet)
+pocet_zeber = 3;
+//pocet_zeber = 5;
+
 // Vzdalenost mezi tryskami
 nozzle_distance = 19;
 
