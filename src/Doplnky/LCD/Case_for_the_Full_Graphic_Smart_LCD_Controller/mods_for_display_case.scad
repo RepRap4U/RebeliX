@@ -7,6 +7,8 @@
 //
 ///////////////////////////////////////////////////////////////////////
 
+use <../../../inc/text_RebeliX.scad>
+
 // parameters
 //---------------------------------------------------------------------
 // The push button switch appears to be different heights on different boards.  on mine it measures 6mm from the bottom of the PCB to the top of the switch not pressed.
@@ -133,7 +135,8 @@ module case_front()
 		mask_button_guide();
 		
 		// Text
-		translate([95,95.5,-1.7]) rotate([0,0,90]) import("text_RebeliX.stl", convexity=10);
+		   // Text RebeliX
+		translate([54,88,1]) rotate([0,180,0]) scale([0.54,0.54,1]) text_RebeliX(10);
 	}
 	// Sloupky v rozich
 	translate([4.1,4.1,2+7.6/2]) sloupek(7.6);
