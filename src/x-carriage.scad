@@ -89,6 +89,7 @@ module x_carriage_holes(){
    translate([-i*(part_width/2 - extr_mount_diam/2),x_rod_distance+12 + 3,3]) screw_hole();
    translate([-i*(part_width/2 - extr_mount_diam - 9),x_rod_distance+12 + 6,8/2]) rotate([0,0,0]) zip_paska(5);
    translate([-i*(part_width/2 - extr_mount_diam - 9),x_rod_distance+12 + 10.5,8/2]) rotate([0,0,0]) cylinder(r=6.5,h=30,$fn=32,center=true);
+   translate([-i*(part_width/2 - extr_mount_diam - 9 - 6.5),x_rod_distance+12 + 10.5,8/2]) cube([2*6.5,2*6.5,30],center=true);
    
    translate([-i*(part_width/2 - extr_mount_diam - 4.5),-12 - 1 - v_corr,8/2]) rotate([0,0,0]) zip_paska(4);
    translate([-i*(part_width/2 - extr_mount_diam - 4.5),-19.5 - v_corr,8/2]) rotate([0,0,0]) cylinder(r=7,h=30,$fn=32,center=true);
