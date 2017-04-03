@@ -45,6 +45,9 @@ profile_nut_width = 0;
 // Posun Z zakladny
 z_base_offset = 11;
 
+// Posun Z motoru
+z_motor_offset = 0;
+
 // Tloustka rohovych spojek
 // 5 mm => sroub M6x14 s podlozkou
 // 3 mm => sroub M6x12 s podlozkou
