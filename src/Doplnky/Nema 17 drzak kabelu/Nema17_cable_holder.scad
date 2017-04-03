@@ -11,7 +11,7 @@ tloustka_steny = 2;
 // 0503 LQEF
 //vyska_kraje = 11.4;
 // 1003 LQEF, 1005 LQEF
-vyska_kraje = 12;
+vyska_kraje = 12.6;
 
 vyska_dilu = vyska_kraje+2.65+1.25;
 
