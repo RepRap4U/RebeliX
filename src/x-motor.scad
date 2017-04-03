@@ -8,7 +8,7 @@
 include <../configuration.scad>
 
 // Vertikalni korekce
-v_corr = 0.65;
+v_corr = 0; //0.65;
 
 x_rod_distance = 45 + v_corr;
 motor_width = 42.3;
