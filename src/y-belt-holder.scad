@@ -6,6 +6,7 @@
 // http://prusamendel.org
 
 include <../configuration.scad>
+include <inc/functions.scad>
 
 height = 14;
 
@@ -31,7 +32,7 @@ for ( i = [0 : 23] ){
  // Middle opening
  translate([-2-25,-1,height/2 - 3.2 - 1]) cube([4,11,15]);	
  
- translate([-33-8.5+33/2-20/2,17,-2]) cube([20,13,20]);
+ translate([-33-8.5+33/2,17+13/2,height/2]) rounded_box(20,13,20,6,1,1,1,1);
 }
 
 module belt_holder_holes(){
