@@ -172,3 +172,70 @@ module maketeeth(len){
         translate([0, 0, i * belt_tooth_distance]) cube([2, 9, belt_tooth_distance * belt_tooth_ratio], center = true);
     }
 }
+
+// Zaoblene rohy
+module rounded_box(x, y, z, rdim = 6, r1 = 1,r2 = 1,r3 = 1,r4 = 1)
+{
+  // r1 - r4 urcuje, ktery roh bude zakulaceny, 1 = zakulaceny
+  hull()
+  {
+    if(r1)
+	  translate([-x/2 + rdim/2,-y/2 + rdim/2,0]) cylinder(r=rdim/2,h=z,$fn=16,center=true);
+    else
+	  translate([-x/2 + rdim/2,-y/2 + rdim/2,0]) cube([rdim,rdim,z],center=true);
+	
+	if(r2)
+	  translate([-x/2 + rdim/2,y/2 - rdim/2,0]) cylinder(r=rdim/2,h=z,$fn=16,center=true);
+	else
+	  translate([-x/2 + rdim/2,y/2 - rdim/2,0]) cube([rdim,rdim,z],center=true);
+	
+	if(r3)
+	  translate([x/2 - rdim/2,y/2 - rdim/2,0]) cylinder(r=rdim/2,h=z,$fn=16,center=true);
+	else
+	  translate([x/2 - rdim/2,y/2 - rdim/2,0]) cube([rdim,rdim,z],center=true);
+	  
+	if(r4)  
+      translate([x/2 - rdim/2,-y/2 + rdim/2,0]) cylinder(r=rdim/2,h=z,$fn=16,center=true);
+	else
+	  translate([x/2 - rdim/2,-y/2 + rdim/2,0])	cube([rdim,rdim,z],center=true);
+  }
+}
+
+// Otvor pro zip pasku
+module zip_paska(r_vnejsi)
+{
+  difference()
+  {
+    cylinder(r=r_vnejsi,h=3.5,$fn=32,center=true);
+    cylinder(r=r_vnejsi-2,h=4,$fn=32,center=true);
+  }
+}
+
+// Drazka pro pridelani do profilu
+module drazka(length = 30)
+{ 
+  height = 3;
+  
+  distance = M6_dia >= profile_nut_width ? M6_dia : profile_nut_width;
+  hrana = length/2 - distance/2 - 2*2;
+  
+  // 1. strana
+  translate([-length/2 + 2,-8/2 + 2,0]) cylinder(r=4/2,h=height,$fn=16,center=true); 
+  translate([-length/2 + 2, 8/2 - 2,0]) cylinder(r=4/2,h=height,$fn=16,center=true);
+  
+  translate([-distance/2 - 2,-8/2 + 2,0]) cylinder(r=4/2, h=height, $fn=32, center=true);
+  translate([-distance/2 - 2,8/2 - 2,0]) cylinder(r=4/2, h=height, $fn=32, center=true);
+  
+  translate([-length/2 + hrana/2 + 2,0,0]) cube([hrana,8,height],center=true); 
+  translate([-length/2 + hrana/2 + 2,0,0]) cube([hrana + 4,4,height],center=true);
+  
+  // 2. strana  
+  translate([length/2 - 2,-8/2 + 2,0]) cylinder(r=4/2,h=height,$fn=16,center=true); 
+  translate([length/2 - 2, 8/2 - 2,0]) cylinder(r=4/2,h=height,$fn=16,center=true);
+  
+  translate([distance/2 + 2,-8/2 + 2,0]) cylinder(r=4/2, h=height, $fn=32, center=true);
+  translate([distance/2 + 2,8/2 - 2,0]) cylinder(r=4/2, h=height, $fn=32, center=true);
+  
+  translate([length/2 - hrana/2 -2,0,0]) cube([hrana,8,height],center=true);
+  translate([length/2 - hrana/2 - 2,0,0]) cube([hrana + 4,4,height],center=true);  
+}
