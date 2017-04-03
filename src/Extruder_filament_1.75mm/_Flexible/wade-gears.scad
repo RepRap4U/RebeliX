@@ -100,12 +100,30 @@ module big(){
                     bore_diameter = 18,
                     circles=0,
                     twist = teeth_twist/teeth_big); 
+			
+			//threaded bolt trap
+			difference()
+			{
+			  translate([0, 0, -gear_width / 2]) 
+				cylinder(r1=20, r2=8, h=7 + layer_height * 9,$fn=64);
+			  translate([0, 0, -gear_width / 2 + layer_height * 6 + 4]) 
+				nut(8, h=8);
+			  translate([0, 0, -gear_width / 2 - 0.1]) 
+				cylinder(r=5.2 / 2, h=gear_width + 9.2,$fn=32);
+			}
         }
         //reduce mass
-        translate([0, 0, 3 - gear_width / 2]) rotate([0, 0, 90]) 
+        difference()
+		{
+		  translate([0, 0, 3 - gear_width / 2]) rotate([0, 0, 90]) 
 				cylinder(r1=24, r2=28, h=gear_width - layer_height * 9 + 1, $fn=36);
-        //bore
-        translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=m8_diameter / 2, h=gear_width + 9.2);
+          translate([0, 0, -gear_width / 2]) 
+				cylinder(r1=20, r2=8, h=7 + layer_height * 9,$fn=64);
+		
+		
+		}
+		//bore
+        translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=5.1 / 2, $fn = 32,h=gear_width + 9.2);
         for (hole=[0:5]) {
             rotate([0, 0, 360 / 6 * hole + 30]) translate([17,0,-10]) rotate(12) {
                 cylinder(r=hole_size, h=20);
@@ -114,11 +132,4 @@ module big(){
         }
 
     }
-    //threaded bolt trap
-    difference(){
-        translate([0, 0, -gear_width / 2]) cylinder(r1=10.5, r2=8, h=7 + layer_height * 9,$fn=64);
-        translate([0, 0, -gear_width / 2 + layer_height * 6 + 4]) nut(8, h=8);
-        translate([0, 0, -gear_width / 2 - 0.1]) cylinder(r=5.2 / 2, h=gear_width + 9.2,$fn=32);
-    }
-
 }
