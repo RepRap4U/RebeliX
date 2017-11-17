@@ -65,9 +65,9 @@ x_holder_position = 6.5;
 //SX17-1003LQFE (doporuceno hlavne na osu Z)
 //motor_length = 29.5;
 //SX17-1003 (doporuceno hlavne na osu Z), SX17-0503LQEF
-motor_length = 34;
+//motor_length = 34;
 //SX17-1005
-//motor_length = 40;
+motor_length = 40;
 //SX17-0905 - zde je jiz problem s velkou vyskou motoru na ose Z - musi se upravit endstop-holder
 //motor_length = 48;
 
